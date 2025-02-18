@@ -1,0 +1,23 @@
+{% extends "listings/base.html" %}
+
+{%block content %}
+<h1> Hello Django </h1>
+<p>Mes groupes prefere sont:</p>
+<ul>
+    {%for band in bands%}
+        <li>{{band.name|upper}}</li>
+    {% endfor %}
+</ul>
+
+<p>j'ai {{bands|length}} groupes prefere</p>
+<p> j'ai .. 
+    {% if bands|length < 5 %}
+    peu
+    {% elif bands|length < 10%}
+    quelques
+    {%else%}
+    beaucoup
+    {%endif%}
+    de groupes preferes
+</p>
+{% endblock %}
