@@ -1,0 +1,17 @@
+{% extends "listings/base.html" %}
+
+{% block content %}
+  <ul>
+    <li>Title: {{liste.title}}</li>
+    <li>Vendu: {{liste.sold|yesno}}</li>
+    <li>Annee: {{liste.year}}</li>
+    <li>Type: {{liste.get_type_e_display}}</li>
+  </ul>
+  {% if  liste.description %}
+    <p>Description: {{liste.description}}</p>
+  {% endif %}
+  {% if band %}
+    <a href="{% url 'band-detail' band.id %}">Groupes associer</a><br>
+  {% endif %}
+  <a href="{% url 'all-lists' %}">Listes</a>
+{% endblock content %}

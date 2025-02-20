@@ -13,10 +13,15 @@ class Band(models.Model):
     genre = models.CharField(choices=Genre.choices,max_length=5)
     biography = models.CharField(max_length=1000)
     year_formed = models.IntegerField(
-        validators=[MaxValueValidator(1900),MinValueValidator(2025)]
+        validators=[MinValueValidator(1900),MaxValueValidator(2025)]
     )
     active = models.BooleanField(default=True)
     official_homepage = models.URLField(null=True,blank=True)
+    
+    # like_new = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return f'{self.name}'
     
 class Listing(models.Model):
     title = models.CharField(max_length=100)
@@ -30,4 +35,8 @@ class Listing(models.Model):
         Posters="PT"
         Miscellaneous="MC"
         
-    _type = models.CharField(choices=Type.choices,max_length=5)
+    type_e = models.CharField(choices=Type.choices,max_length=5)
+    band = models.ForeignKey(Band,null=True,on_delete=models.SET_NULL)
+    
+    def __str__(self):
+        return f'{self.title}'
