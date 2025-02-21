@@ -7,5 +7,6 @@
         <li><a href="{% url 'list-detail' liste.id %}">{{liste.title}}</a></li>
         {% endfor %}
     </ul>
+    <a href="{% url 'create_listing' %}">add</a>
 {% endblock content %}
 
